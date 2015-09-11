@@ -84,6 +84,9 @@ int handle_request(int msgsock, char *dir)
         execl("/bin/ls", "ls", "-l", dir, NULL);
         // close(msgsock) // I don't this this will work. We will never reach here unless
                             // error occurs
+                            
+        close(msgsock); // it's fine to close the msgsock pointing to the socket
+        
         perror("execl");
         exit(1);
     }
